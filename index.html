@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tienda de Vinos | Inicio</title>
+    <meta
+      name="description"
+      content="Venta de vinos con envíos a todo el país. Cajas promo, bodegas destacadas y confirmación por WhatsApp."
+    />
+
+    <!-- Fuentes e iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Swiper CSS (carrusel categorías) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <!-- Tus estilos -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container nav">
+        <a href="#inicio" class="brand" aria-label="Ir al inicio">
+          <img src="Imagenes\logo_eldescorche.jpg" alt="El Descorche" />
+          <span class="brand-name">El Descorche</span>
+        </a>
+        <div class="nav-left">
+          <a href="#" class="active">Inicio</a>
+          <a href="#categorias">Categorías</a>
+          <a href="#promos">Promos</a>
+          <a href="#bodegas">Bodegas</a>
+          <a href="#info">Información</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="nav-right">
+          <!-- Cuenta / Auth -->
+          <div class="account">
+            <button id="btnOpenAuth" class="btn btn-ghost">
+              <i class="fa-regular fa-user"></i>
+              <span id="accountLabel">Ingresar</span>
+            </button>
+            <div id="accountMenu" class="account-menu">
+              <div
+                class="account-row muted"
+                id="whoamiRow"
+                style="display: none"
+              >
+                Sesión: <strong id="whoamiEmail"></strong>
+              </div>
+              <button
+                id="btnLogout"
+                class="btn btn-ghost"
+                style="display: none"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          </div>
+
+          <a href="#" id="openCart" class="cart" aria-label="Abrir carrito">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartBubble" class="bubble">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Modal/Auth -->
+    <dialog id="authModal" class="auth-modal">
+      <form
+        method="dialog"
+        class="auth-box"
+        id="authBox"
+        onsubmit="return false;"
+      >
+        <div class="auth-header">
+          <h3>Tu cuenta</h3>
+          <button id="closeAuth" class="btn btn-ghost" value="cancel">
+            Cerrar
+          </button>
+        </div>
+
+        <div class="auth-body">
+          <label class="field">
+            <span>Email</span>
+            <input
+              id="authEmail"
+              type="email"
+              placeholder="tu@correo.com"
+              required
+            />
+          </label>
+          <label class="field">
+            <span>Contraseña</span>
+            <input
+              id="authPass"
+              type="password"
+              placeholder="Mínimo 6 caracteres"
+              minlength="6"
+              required
+            />
+          </label>
+
+          <div class="row" style="margin-top: 8px; gap: 8px; flex-wrap: wrap">
+            <button id="btnLogin" class="btn" type="button">Ingresar</button>
+            <button id="btnSignup" class="btn btn-ghost" type="button">
+              Crear cuenta
+            </button>
+            <button id="btnMagic" class="btn btn-ghost" type="button">
+              Recibir link por email
+            </button>
+          </div>
+
+          <p class="muted" style="margin-top: 10px; font-size: 12px">
+            Guardamos tu carrito a tu usuario para que lo encuentres en tu
+            próxima visita.
+          </p>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio" aria-label="Portada">
+      <div class="hero-content">
+        <h1 class="hero-title">El Descorche</h1>
+        <p class="muted hero-sub">
+          Cajas promo y etiquetas destacadas · Envíos a todo el país
+        </p>
+        <a href="#categorias" class="btn">Comprar ahora</a>
+      </div>
+    </section>
+
+    <main class="container" id="appRoot">
+      <!-- Categorías -->
+      <section id="categorias">
+        <h2>Categorías</h2>
+
+        <!-- Carrusel Swiper -->
+        <div class="swiper categoriesSwiper">
+          <div class="swiper-wrapper">
+            <!-- slides -->
+            <a
+              class="swiper-slide cat-card"
+              href="#productos"
+              data-filter="Tinto"
+              aria-label="Tinto"
+            >
+              <img src="Imagenes/tinto_botella.jpg" alt="Copa de vino tinto" />
+              <div class="pour" aria-hidden="true">
+                <div class="glass">
+                  <div class="wine"></div>
+                  <div class="stream"></div>
+                </div>
+              </div>
+              <div class="cat-body">Tinto</div>
+            </a>
+
+            <a
+              class="swiper-slide cat-card"
+              href="#productos"
+              data-filter="Blanco"
+              aria-label="Blanco"
+            >
+              <img
+                src="Imagenes/blanco_botella.png"
+                alt="Copa de vino blanco"
+              />
+              <div class="pour">
+                <div class="glass">
+                  <div class="wine" style="background: #f0d475"></div>
+                  <div class="stream" style="background: #f0d475"></div>
+                </div>
+              </div>
+              <div class="cat-body">Blanco</div>
+            </a>
+
+            <a
+              class="swiper-slide cat-card"
+              href="#productos"
+              data-filter="Rosado"
+              aria-label="Rosado"
+            >
+              <img
+                src="Imagenes/rosado_botella.png"
+                alt="Copa de vino rosado"
+              />
+              <div class="pour">
+                <div class="glass">
+                  <div class="wine" style="background: #ff8aa4"></div>
+                  <div class="stream" style="background: #ff8aa4"></div>
+                </div>
+              </div>
+              <div class="cat-body">Rosado</div>
+            </a>
+
+            <a
+              class="swiper-slide cat-card"
+              href="#productos"
+              data-filter="Espumante"
+              aria-label="Espumante"
+            >
+              <img src="Imagenes/espumante_botella1.png" alt="Copa espumante" />
+              <div class="pour">
+                <div class="glass">
+                  <div class="wine" style="background: #f4e3a9"></div>
+                  <div class="stream" style="background: #f4e3a9"></div>
+                </div>
+              </div>
+              <div class="cat-body">Espumante</div>
+            </a>
+
+            <a
+              class="swiper-slide cat-card"
+              href="#productos"
+              data-filter="Regalos"
+              aria-label="Especiales para regalar"
+            >
+              <img src="Imagenes/box_vinos.png" alt="Box para regalar" />
+              <div class="pour">
+                <div class="glass">
+                  <div class="wine"></div>
+                  <div class="stream"></div>
+                </div>
+              </div>
+              <div class="cat-body">Especiales para regalar</div>
+            </a>
+          </div>
+
+          <!-- Controles -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
+      <!-- Cajas Promo -->
+      <section id="promos">
+        <h2>Promociones</h2>
+        <div class="promo promo-banner" aria-label="Promociones">
+          <div class="promo-content">
+            <h3 class="promo-title">Mix Selección</h3>
+            <p class="muted">La mejor curaduría al precio más bajo.</p>
+
+            <div class="promo-row" aria-hidden="true">
+              <div class="promo-bottle">
+                <img
+                  src="https://images.unsplash.com/photo-1604908554007-06259bdb83a0?q=80&w=400&auto=format&fit=crop"
+                  alt="Botella 1"
+                />
+              </div>
+              <div class="promo-bottle">
+                <img
+                  src="https://images.unsplash.com/photo-1541976076758-347942db1971?q=80&w=400&auto=format&fit=crop"
+                  alt="Botella 2"
+                />
+              </div>
+              <div class="promo-bottle">
+                <img
+                  src="https://images.unsplash.com/photo-1514361977593-9d0612d9580a?q=80&w=400&auto=format&fit=crop"
+                  alt="Botella 3"
+                />
+              </div>
+            </div>
+
+            <div class="promo-cta">
+              <a href="#productos" class="btn">Ver Promos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beneficios -->
+      <section id="info">
+        <div class="benefits">
+          <div class="benefit">
+            <span class="icon">📦</span>
+            <div>Envíos a todo el país</div>
+          </div>
+          <div class="benefit">
+            <span class="icon">🚚</span>
+            <div>
+              Envíos a Cordoba Gratis <span class="tag">(desde $300.000)</span>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="icon">⏱️</span>
+            <div>Entrega en 48 hs (Cordoba)</div>
+          </div>
+          <div class="benefit">
+            <span class="icon">🛡️</span>
+            <div>Compra protegida</div>
+          </div>
+          <div class="benefit">
+            <span class="icon">🛋️</span>
+            <div>Comodidad total para vos</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Productos -->
+      <section id="productos">
+        <h2>Vinos Disponibles</h2>
+        <p class="muted" style="margin-top: -6px">
+          Elegí y agregá al carrito. (Los detalles los cargás luego.)
+        </p>
+
+        <div class="product-carousel">
+          <button class="pnav" id="prodPrev" aria-label="Anterior">❮</button>
+          <div class="product-viewport">
+            <div id="productTrack" class="product-track"></div>
+          </div>
+          <button class="pnav" id="prodNext" aria-label="Siguiente">❯</button>
+        </div>
+      </section>
+
+      <!-- Bodegas (placeholder) -->
+      <section id="bodegas">
+        <h2>Bodegas Más Elegidas</h2>
+        <div class="row muted">
+          <span class="tag">...</span><span class="tag">...</span
+          ><span class="tag">...</span> <span class="tag">Luigi Bosca</span
+          ><span class="tag">Trapiche</span>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <p class="muted">Escribinos por WhatsApp o email.</p>
+
+        <!-- Iconos de contacto -->
+        <div class="contact-icons">
+          <a id="waLink" href="#" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <a id="mailLink" href="mailto:" rel="noopener">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Drawer Carrito -->
+    <aside id="drawer" class="drawer" aria-label="Carrito">
+      <div class="drawer-header">
+        <strong>Tu Carrito</strong>
+        <button class="btn btn-ghost" id="closeCart">Cerrar</button>
+      </div>
+      <div id="cartLines" class="drawer-body"></div>
+      <div class="drawer-footer">
+        <div class="total">
+          <span>Subtotal</span><span id="subtotal">$0</span>
+        </div>
+        <div class="total">
+          <span>Descuentos</span><span id="discount">$0</span>
+        </div>
+        <div class="total">
+          <span>Envío (estimado)</span><span id="shipping">$0</span>
+        </div>
+        <div class="total grand">
+          <span>Total</span><span id="total">$0</span>
+        </div>
+        <button id="whatsappBtn" class="btn">Confirmar por WhatsApp</button>
+        <button id="clearBtn" class="btn btn-ghost">Vaciar carrito</button>
+      </div>
+    </aside>
+
+    <footer>
+      <div class="container">
+        © <span id="y"></span> Tienda de Vinos — Todos los derechos reservados
+      </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Firebase (CDN, modular) + tu app -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        sendSignInLinkToEmail,
+        isSignInWithEmailLink,
+        signInWithEmailLink,
+        signOut,
+        setPersistence,
+        browserLocalPersistence,
+      } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+      // ⚠️ Pega la config real de tu proyecto:
+      const firebaseConfig = {
+        apiKey: "TU_API_KEY",
+        authDomain: "TU_PROYECTO.firebaseapp.com",
+        projectId: "TU_PROYECTO",
+        appId: "TU_APP_ID",
+      };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      // persistencia local (queda logueado entre visitas)
+      await setPersistence(auth, browserLocalPersistence);
+
+      // Exponer auth al script principal
+      window.__AUTH__ = {
+        auth,
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        sendSignInLinkToEmail,
+        isSignInWithEmailLink,
+        signInWithEmailLink,
+        signOut,
+      };
+    </script>
+
+    <!-- Lógica de la tienda + auth integrada -->
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
